@@ -6,15 +6,13 @@
 # https://docs.scrapy.org/en/latest/topics/items.html
 
 import scrapy
+from scrapy.loader.processors import MapCompose, TakeFirst
+from w3lib.html import remove_tags
 
 #la classe item si tiene il testo e pulisce i dati (input_processor)
 class FakeNewsItem(scrapy.Item):
     fake_news_title = scrapy.Field(
-        input_processor= remove_tags,
+        input_processor= MapCompose(remove_tags),
         output_processor= TakeFirst()
     )
 
-class FirstSpiderItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass

@@ -1,4 +1,6 @@
 import scrapy
+from first_spider.items import FakeNewsItem
+from scrapy.loader import ItemLoader
 
 class fake_news_spider(scrapy.Spider):
     name = 'fake_news'
@@ -9,7 +11,12 @@ class fake_news_spider(scrapy.Spider):
 
     def parse(self, response):
         for titles in response.xpath("//article[@class='post-entry']"):
+            l = ItemLoader(item=FakeNewsItem(), selector=titles)
+            l.add_xpath('fake_news_title', ".//h4[@class='entry-title']/a")
+            
+            yield l.load_item()
 
-            yield {
-                'title_text' : titles.xpath("//h4[@class='entry-title']/a/@title").extract_first()
-            }
+        next_page = response.xpath('//a[@class="next page-numbers"]/@href').extract_first()
+        if next_page is not None:
+            next_page_link = response.urljoin(next_page)
+            yield scrapy.Request(url=next_page_link, callback=self.parse)
