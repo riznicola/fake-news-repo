@@ -1,0 +1,14 @@
+websites scraped
+
+FAKE NEWS
+28/04/2020 - dionidream - start_urls = ['https://www.dionidream.com'] 
+29/04/2020 - autismovaccini -  start_urls = ['https://autismovaccini.org/?s']
+29/04/2020 - segnidalcielo - start_urls = ['https://www.segnidalcielo.it/?s=']
+
+SCIENTIFIC NEWS
+
+30/04/2020 - beatricemautino 
+30/04/2020 - dariobressanini
+30/04/2020 - mentepsiche
+30/04/2020 - orologiaiomiope
+30/04/2020 - medbunker
